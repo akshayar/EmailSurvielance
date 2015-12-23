@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <bean class="com.aksh.poc.first.FirstMain" id="firstMain" init-method="start" 
+		destroy-method="shutDown" lazy-init="true"> </bean> -->
+
+	<bean class="com.aksh.poc.first.CSVReader" id="csvReader"
+		scope="prototype">
+	</bean>
+
+	<bean id="graphRelationCreater" class="com.aksh.poc.first.CreateRelationShip"
+		init-method="init" destroy-method="shutDown" lazy-init="true">
+		<property name="dbPath"
+			value="C:\Users\arawa3\Documents\Neo4j\enron_final.2"></property>
+	</bean>
+
+	<!-- <bean id="batchRelationCreater" class="com.aksh.poc.batch.BatchCreateRelationShip" 
+		init-method="initDB"> <property name="dbPath" value="C:\\Users\\arawa3\\Documents\\Neo4j\\enron3"></property> 
+		</bean> -->
+
+	<bean class="com.aksh.poc.first.EmailRelationShipDAO" id="emailRelationShipDAO"
+		lazy-init="true">
+		<property name="relationShipCreator" ref="graphRelationCreater"></property>
+		<property name="resultDir"
+			value="D:\other-projects\analytics-nlp\rapid-miner\process\out\"></property>
+		<!-- <property name="fileList"> <list> <value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-1.csv 
+			</value> <value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-2.csv 
+			</value> <value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-3.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-4.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-5.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-6.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-7.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-8.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-9.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-10.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-11.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-12.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-13.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-14.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-15.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-16.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-17.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-18.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-19.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-20.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-21.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-22.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-23.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-24.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-25.csv</value> 
+			<value>D:\other-projects\analytics-nlp\rapid-miner\process\out\result-26.csv</value> 
+			</list> </property> -->
+	</bean>
+
+</beans>
