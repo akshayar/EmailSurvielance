@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process version="5.3.013">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="5.3.013" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="text:process_document_from_file" compatibility="5.3.002" expanded="true" height="76" name="Process Documents from Files" width="90" x="45" y="30">
+        <list key="text_directories">
+          <parameter key="1" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir"/>
+          <parameter key="2" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p"/>
+          <parameter key="3" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p\all_documents"/>
+          <parameter key="4" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p\contacts"/>
+          <parameter key="5" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p\deleted_items"/>
+          <parameter key="6" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p\discussion_threads"/>
+          <parameter key="7" value="D:\other-projects\analytics-nlp\enron-data\DataSet\enron_mail_20110402\enron_mail_20110402\maildir\allen-p\inbox"/>
+        </list>
+        <parameter key="file_pattern" value="*"/>
+        <parameter key="extract_text_only" value="false"/>
+        <parameter key="use_file_extension_as_type" value="false"/>
+        <parameter key="content_type" value="txt"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <parameter key="create_word_vector" value="true"/>
+        <parameter key="vector_creation" value="Term Frequency"/>
+        <parameter key="add_meta_information" value="true"/>
+        <parameter key="keep_text" value="true"/>
+        <parameter key="prune_method" value="absolute"/>
+        <parameter key="prune_below_percent" value="3.0"/>
+        <parameter key="prune_above_percent" value="30.0"/>
+        <parameter key="prune_below_absolute" value="3"/>
+        <parameter key="prune_above_absolute" value="9999"/>
+        <parameter key="prune_below_rank" value="0.05"/>
+        <parameter key="prune_above_rank" value="0.95"/>
+        <parameter key="datamanagement" value="double_sparse_array"/>
+        <process expanded="true">
+          <operator activated="true" class="text:extract_information" compatibility="5.3.002" expanded="true" height="60" name="Extract Information" width="90" x="179" y="75">
+            <parameter key="query_type" value="Regular Region"/>
+            <list key="string_machting_queries"/>
+            <parameter key="attribute_type" value="Nominal"/>
+            <list key="regular_expression_queries"/>
+            <list key="regular_region_queries">
+              <parameter key="messageId" value="Message-ID:\\s+&lt;+.&gt;+"/>
+              <parameter key="From" value="From:\\s+.\\s"/>
+              <parameter key="To" value="To:\\s+.Subject:"/>
+              <parameter key="Subject" value="Subject:\\s+.\\n"/>
+              <parameter key="Date" value="Date:\\s+.\\n"/>
+              <parameter key="fromName" value="X-From:\\s+.\\n"/>
+              <parameter key="toName" value="X-To:\\s+.\\n"/>
+              <parameter key="cc" value="Cc:\\s+.\\n"/>
+              <parameter key="bcc" value="Bcc:\\s+.\\n"/>
+              <parameter key="ccName" value="X-cc:\\s+.\\n"/>
+              <parameter key="bccName" value="X-bcc:\\s+.\\n"/>
+              <parameter key="emailText" value="X-FileName:\\s+.(\.*Original Message\.*|\.*Forwarded by\.*|\\z)"/>
+            </list>
+            <list key="xpath_queries"/>
+            <list key="namespaces"/>
+            <parameter key="ignore_CDATA" value="true"/>
+            <parameter key="assume_html" value="true"/>
+            <list key="index_queries"/>
+          </operator>
+          <connect from_port="document" to_op="Extract Information" to_port="document"/>
+          <connect from_op="Extract Information" from_port="document" to_port="document 1"/>
+          <portSpacing port="source_document" spacing="0"/>
+          <portSpacing port="sink_document 1" spacing="0"/>
+          <portSpacing port="sink_document 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="execute_script" compatibility="5.3.013" expanded="true" height="76" name="Execute Script (2)" width="90" x="179" y="30">
+        <parameter key="script" value="ExampleSet exampleSet = input[0];&#10;Attributes attributes = exampleSet.getAttributes();&#10;for (Example example : exampleSet) {&#10;          example[&quot;From&quot;] = example[&quot;From&quot;].replaceAll( 'From:', '' );&#10;          example[&quot;To&quot;] = example[&quot;To&quot;].replaceAll( /To:|\&gt;|\&lt;|Subject:|:|\?/, '' );&#10;          example[&quot;messageId&quot;] = example[&quot;messageId&quot;].replaceAll( /Message-ID:|\&gt;|\&lt;|:/, '' );&#10;&#9;&#9;example[&quot;toName&quot;] = example[&quot;toName&quot;].replaceAll( /X-To:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;java.lang.String dateStr=example[&quot;Date&quot;].replaceAll( /Date:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;java.util.Date&#9;date=new java.text.SimpleDateFormat(&quot;EEE, d MMM yyyy HH:mm:ss Z&quot;).parse(dateStr.trim());&#9;&#10;          example[&quot;Date&quot;]=new java.text.SimpleDateFormat(&quot;MM-dd-yyyy HH:mm:ss Z&quot;).format(date)&#9;&#10;          example[&quot;Date&quot;] = example[&quot;Date&quot;].replaceAll( /Date:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;example[&quot;bcc&quot;] = example[&quot;bcc&quot;].replaceAll( /Bcc:|\&gt;|\&lt;|:|\?/, '' );&#10;&#9;&#9;example[&quot;fromName&quot;] = example[&quot;fromName&quot;].replaceAll( /X-From:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;example[&quot;cc&quot;] = example[&quot;cc&quot;].replaceAll( /Cc:|\&gt;|\&lt;|:|\?/, '' );&#10;&#9;&#9;example[&quot;ccName&quot;] = example[&quot;ccName&quot;].replaceAll( /X-cc:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;example[&quot;bccName&quot;] = example[&quot;bccName&quot;].replaceAll( /X-bcc:|\&gt;|\&lt;/, '' );&#10;&#9;&#9;&#10;        //example[&quot;messageId&quot;] = example[&quot;messageId&quot;].replaceAll( 'Message-ID:', '' );&#10;        //example[&quot;messageId&quot;] = example[&quot;messageId&quot;].replaceAll( '\&gt;', '' );&#10;        //example[&quot;messageId&quot;] = example[&quot;messageId&quot;].replaceAll( '\&lt;', '' );&#10;        example[&quot;Subject&quot;] = example[&quot;Subject&quot;].replaceAll( 'Subject:', '' );&#10;        example[&quot;emailText&quot;] = example[&quot;emailText&quot;].replaceAll( 'X-FileName:', '' );&#10;        &#10;}&#10;return exampleSet;"/>
+        <parameter key="standard_imports" value="true"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="5.3.013" expanded="true" height="76" name="Write CSV" width="90" x="179" y="165">
+        <parameter key="csv_file" value="D:\other-projects\analytics-nlp\enron-data\results.csv"/>
+        <parameter key="column_separator" value=","/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <connect from_port="input 1" to_op="Process Documents from Files" to_port="word list"/>
+      <connect from_op="Process Documents from Files" from_port="example set" to_op="Execute Script (2)" to_port="input 1"/>
+      <connect from_op="Execute Script (2)" from_port="output 1" to_op="Write CSV" to_port="input"/>
+      <connect from_op="Write CSV" from_port="through" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="source_input 2" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>

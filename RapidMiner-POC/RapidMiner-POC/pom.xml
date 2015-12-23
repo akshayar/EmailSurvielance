@@ -1,0 +1,465 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aksh</groupId>
+	<artifactId>RapidMiner-POC</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<repositories>
+		<repository>
+			<id>neil_rubens-repository</id>
+			<url>https://bitbucket.org/neil_rubens/rapidminer_maven-repo/raw/master/repository/</url>
+		</repository>
+		<repository>
+			<id>rapidMinerExt</id>
+			<url>https://dl.bintray.com/rapidminer/public/</url>
+		</repository>
+		<repository>
+			<id>rapidMiner-open</id>
+			<url>https://dl.bintray.com/rapidminer/open-source/</url>
+		</repository>
+
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>blas</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>collections-generic</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>colt</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>commons-codec-1.4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>commons-httpclient-3.1</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>commons-lang-2.4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>commons-logging-1.1</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>concurrent</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>dom4j-1.6.1</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>encog</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-export</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphics2d</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio-emf</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio-pdf</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio-ps</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio-svg</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio-swf</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-graphicsio</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-io</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-swing</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-util</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>freehep-xml</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>groovy-all-1.7.7</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>iijdbc-10.0-4.0.6</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>itextpdf-5.3.3</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>ivy-2.2.0</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jama</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jcommon</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jep</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jmathplot</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>joone-engine</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jtds-1.2.8</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jugpreview</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jung-algorithms</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jung-api</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jung-graph-impl</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jung-visualization</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>junit</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>jxl</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>kdb</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>launcher</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>looks</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>mail</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>microba</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>mysql-connector-java-5.1.24-bin</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>poi-3.8-20120326</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>poi-excelant-3.8-20120326</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>poi-ooxml-3.8-20120326</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>poi-ooxml-schemas-3.8-20120326</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>poi-scratchpad-3.8-20120326</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>postgresql-9.2-1002.jdbc4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>rapidminer</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>rm_doc</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>rsyntaxtextarea</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>SassyReader-0.5</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>slf4j-api-1.6.4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>slf4j-simple-1.6.4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>swingx-all-1.6.4</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>vertica-jdk5-6.0.1-0</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>vldocking</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>ws-commons-util-1.0.2</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xmlbeans-2.3.0</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xmlpull</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xmlrpc-client-3.1.3</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xmlrpc-common-3.1.3</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xpp3</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rapid_i</groupId>
+			<artifactId>xstream</artifactId>
+			<version>5.3.013</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rapidminer.studio</groupId>
+			<artifactId>rapidminer</artifactId>
+			<version>5.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.6.RELEASE</version>
+		</dependency>
+
+	</dependencies>
+</project>

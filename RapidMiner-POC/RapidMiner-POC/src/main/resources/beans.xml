@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="process" class="com.aksh.pa.process.impl.RapidMinerProcessImpl"
+		init-method="loadProcess" scope="prototype">
+		<property name="processXmlDefinition" value="src/main/resources/process/select-email-medat-data.rmp"></property>
+	</bean>
+	<bean id="main" class="com.aksh.pa.process.impl.MainProgram">
+		<property name="resultDir" value="out"></property>
+	</bean>
+
+	<bean id="csvReader" class="com.aksh.pa.process.impl.CSVReader"
+		init-method="read">
+		<property name="file" value="src/main/resources/process/email-files.csv"></property>
+	</bean>
+
+</beans>
